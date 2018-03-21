@@ -6,7 +6,7 @@ class Book extends Component {
 	}
 
 	render() {
-		const bookOptions = [
+		let bookOptions = [
 			{
 				title: 'Move to...',
 				key: 'disabled',
@@ -26,8 +26,16 @@ class Book extends Component {
 				title: 'Read',
 				key: 'read',
 				disabled: ''
+			},
+			{
+				title: 'Remove',
+				key: 'none',
+				disabled: ''
 			}
 		];
+		if (this.props.remove === false) {
+			bookOptions = bookOptions.filter(options => options.key !== 'none');
+		}
 		return (
 			<li>
 				<div className="book">

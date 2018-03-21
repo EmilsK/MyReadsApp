@@ -44,7 +44,7 @@ class BooksApp extends React.Component {
 		return (
 			<div className="app">
 				{this.state.showSearchPage ? (
-					<Search onLinkClick={this.changeSearchState} />
+					<Search onMoveBook={this.moveBook} onLinkClick={this.changeSearchState} />
 				) : (
 					<MyLibrary
 						onMoveBook={this.moveBook}
