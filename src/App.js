@@ -1,5 +1,5 @@
 import React from 'react';
-// import * as BooksAPI from './BooksAPI'
+import * as BooksAPI from './BooksAPI';
 import './App.css';
 
 import Search from './Search';
@@ -13,8 +13,15 @@ class BooksApp extends React.Component {
 		 * users can use the browser's back and forward buttons to navigate between
 		 * pages, as well as provide a good URL they can bookmark and share.
 		 */
-		showSearchPage: false
+		showSearchPage: false,
+		books: []
 	};
+
+	componentDidMount() {
+		BooksAPI.getAll().then(books => {
+			this.setState({ books });
+		});
+	}
 
 	changeSearchState = displaySearch => {
 		this.setState(() => ({
@@ -28,7 +35,10 @@ class BooksApp extends React.Component {
 				{this.state.showSearchPage ? (
 					<Search onLinkClick={this.changeSearchState} />
 				) : (
-					<MyLibrary onLinkClick={this.changeSearchState} />
+					<MyLibrary
+						booksInLibrary={this.state.books[1]}
+						onLinkClick={this.changeSearchState}
+					/>
 				)}
 			</div>
 		);
