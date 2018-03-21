@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from './Header';
 import Book from './Book';
 import sortBy from 'sort-by';
+import { Link } from 'react-router-dom';
 
 class MyLibrary extends Component {
 	render() {
@@ -47,7 +48,7 @@ class MyLibrary extends Component {
 					</div>
 				</div>
 				<div className="open-search">
-					<a onClick={() => this.props.onLinkClick(true)}>Add a book</a>
+					<Link to="/search" />
 				</div>
 			</div>
 		);

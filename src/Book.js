@@ -45,13 +45,16 @@ class Book extends Component {
 							style={{
 								width: 128,
 								height: 193,
-								backgroundImage: `url(${this.props.bookInfo !== undefined &&
-									this.props.bookInfo.imageLinks.thumbnail})`
+								backgroundImage: `url(${this.props.bookInfo.imageLinks !==
+									undefined && this.props.bookInfo.imageLinks.thumbnail})`
 							}}
 						/>
 						<div className="book-shelf-changer">
 							<select
-								value={this.props.bookInfo.shelf}
+								value={
+									this.props.bookInfo.shelf !== undefined &&
+									this.props.bookInfo.shelf
+								}
 								onChange={e => this.updateBook(e.target.value)}
 							>
 								{bookOptions.map(option => (
@@ -66,12 +69,8 @@ class Book extends Component {
 							</select>
 						</div>
 					</div>
-					<div className="book-title">
-						{this.props.bookInfo !== undefined && this.props.bookInfo.title}
-					</div>
-					<div className="book-authors">
-						{this.props.bookInfo !== undefined && this.props.bookInfo.authors}
-					</div>
+					<div className="book-title">{this.props.bookInfo.title}</div>
+					<div className="book-authors">{this.props.bookInfo.authors}</div>
 				</div>
 			</li>
 		);

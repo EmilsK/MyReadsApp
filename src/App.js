@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 import * as BooksAPI from './BooksAPI';
 import './App.css';
 
@@ -23,12 +24,6 @@ class BooksApp extends React.Component {
 		});
 	}
 
-	changeSearchState = displaySearch => {
-		this.setState(() => ({
-			showSearchPage: displaySearch
-		}));
-	};
-
 	moveBook = (book, shelf) => {
 		if (this.state.books) {
 			BooksAPI.update(book, shelf).then(() => {
@@ -43,15 +38,18 @@ class BooksApp extends React.Component {
 	render() {
 		return (
 			<div className="app">
-				{this.state.showSearchPage ? (
-					<Search onMoveBook={this.moveBook} onLinkClick={this.changeSearchState} />
-				) : (
-					<MyLibrary
-						onMoveBook={this.moveBook}
-						booksInLibrary={this.state.books}
-						onLinkClick={this.changeSearchState}
-					/>
-				)}
+				<Route
+					exact
+					path="/search"
+					render={({ history }) => <Search onMoveBook={this.moveBook} />}
+				/>
+				<Route
+					exact
+					path="/"
+					render={() => (
+						<MyLibrary onMoveBook={this.moveBook} booksInLibrary={this.state.books} />
+					)}
+				/>
 			</div>
 		);
 	}
