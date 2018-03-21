@@ -55,7 +55,7 @@ class Book extends Component {
 									this.props.bookInfo.shelf !== undefined &&
 									this.props.bookInfo.shelf
 								}
-								onChange={e => this.updateBook(e.target.value)}
+								onChange={event => this.updateBook(event.target.value)}
 							>
 								{bookOptions.map(option => (
 									<option
