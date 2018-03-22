@@ -8,6 +8,7 @@ class Search extends Component {
 		query: '',
 		books: []
 	};
+
 	updateQuery = query => {
 		if (!query) {
 			this.setState({ query: '', books: [] });
@@ -17,10 +18,21 @@ class Search extends Component {
 				if (books.error) {
 					books = [];
 				}
+				// Add shelf status if the book is already on shelf
+				books.map(book => {
+					this.props.booksInLibrary.forEach(bookInShelf => {
+						if (bookInShelf.id === book.id) {
+							book.shelf = bookInShelf.shelf;
+						}
+					});
+					return book;
+				});
+
 				this.setState({ books });
 			});
 		}
 	};
+
 	render() {
 		return (
 			<div className="search-books">
