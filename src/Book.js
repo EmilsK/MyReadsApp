@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import propTypes from 'prop-types';
 
 class Book extends Component {
 	updateBook(shelf) {
@@ -76,5 +77,11 @@ class Book extends Component {
 		);
 	}
 }
+
+Book.propTypes = {
+	onMoveBook: propTypes.func.isRequired,
+	bookInfo: propTypes.object.isRequired,
+	remove: propTypes.bool
+};
 
 export default Book;

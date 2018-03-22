@@ -3,6 +3,7 @@ import Header from './Header';
 import Book from './Book';
 import sortBy from 'sort-by';
 import { Link } from 'react-router-dom';
+import propTypes from 'prop-types';
 
 class MyLibrary extends Component {
 	render() {
@@ -54,5 +55,10 @@ class MyLibrary extends Component {
 		);
 	}
 }
+
+MyLibrary.propTypes = {
+	onMoveBook: propTypes.func.isRequired,
+	booksInLibrary: propTypes.array.isRequired
+};
 
 export default MyLibrary;

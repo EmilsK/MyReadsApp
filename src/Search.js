@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import * as BooksAPI from './BooksAPI';
 import Book from './Book';
 import { Link } from 'react-router-dom';
+import propTypes from 'prop-types';
 
 class Search extends Component {
 	state = {
@@ -20,9 +21,9 @@ class Search extends Component {
 				}
 				// Add shelf status if the book is already on shelf
 				books.map(book => {
-					this.props.booksInLibrary.forEach(bookInShelf => {
-						if (bookInShelf.id === book.id) {
-							book.shelf = bookInShelf.shelf;
+					this.props.booksInLibrary.forEach(bookInLibrary => {
+						if (bookInLibrary.id === book.id) {
+							book.shelf = bookInLibrary.shelf;
 						}
 					});
 					return book;
@@ -64,5 +65,10 @@ class Search extends Component {
 		);
 	}
 }
+
+Search.propTypes = {
+	onMoveBook: propTypes.func.isRequired,
+	booksInLibrary: propTypes.array.isRequired
+};
 
 export default Search;
