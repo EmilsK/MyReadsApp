@@ -29,14 +29,11 @@ class Book extends Component {
 				disabled: ''
 			},
 			{
-				title: 'Remove',
+				title: 'None',
 				key: 'none',
 				disabled: ''
 			}
 		];
-		if (this.props.remove === false) {
-			bookOptions = bookOptions.filter(options => options.key !== 'none');
-		}
 		return (
 			<li>
 				<div className="book">
@@ -53,8 +50,9 @@ class Book extends Component {
 						<div className="book-shelf-changer">
 							<select
 								value={
-									this.props.bookInfo.shelf !== undefined &&
-									this.props.bookInfo.shelf
+									this.props.bookInfo.shelf !== undefined
+										? this.props.bookInfo.shelf
+										: 'none'
 								}
 								onChange={event => this.updateBook(event.target.value)}
 							>
@@ -80,8 +78,7 @@ class Book extends Component {
 
 Book.propTypes = {
 	onMoveBook: propTypes.func.isRequired,
-	bookInfo: propTypes.object.isRequired,
-	remove: propTypes.bool
+	bookInfo: propTypes.object.isRequired
 };
 
 export default Book;

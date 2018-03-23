@@ -56,7 +56,6 @@ class Search extends Component {
 								onMoveBook={this.props.onMoveBook}
 								key={book.id}
 								bookInfo={book}
-								remove={false}
 							/>
 						))}
 					</ul>
